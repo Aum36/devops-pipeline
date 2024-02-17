@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+
+.landing-page {
+  height: calc(100vh - 80px);
+  width: 80%;
+  display: flex;
+}
+
+.text-section {
+  flex-basis: 80%;
+  background-color: white;
+  padding: 10%;
+  display: flex;
+}
+
+.image-section {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100vh;
+  border-radius: 30px 0px 0px 30px;
+  background-color: #bdf0d6;
+  z-index: -1;
+}
+
+.lp-image {
+  position: absolute;
+  top: 15%;
+  right: 4.5%;
+}
+
+.text-content {
+  margin-left: -10%;
+  flex-basis: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.lp-image > img {
+  width: 600px;
+  height: 420px;
+}
+
+.lp-heading {
+  display: block;
+  font-family: "Satisfy", cursive;
+  font-size: 5rem;
+}
+
+.lp-text {
+  font-family: "Itim", cursive;
+  font-size: 1.8rem;
+  /* text-align: center; */
+}
