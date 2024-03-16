@@ -3,7 +3,6 @@ const Chrome = require('selenium-webdriver/chrome');
 const options = new Chrome.Options();
 require('selenium-webdriver/chrome')
 
-require('dotenv').config()
 let driver
 const rootURL = "http://ec2-13-127-87-122.ap-south-1.compute.amazonaws.com:8081"
 console.log(rootURL);
