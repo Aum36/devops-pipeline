@@ -8,7 +8,7 @@ const rootURL = "http://localhost:8081/"
 console.log(rootURL);
 beforeAll(async () => {
      driver = await new Builder().forBrowser(Browser.CHROME)
-     .setChromeOptions(options.addArguments('--headless=new'))
+     .setChromeOptions(options.addArguments('--headless=new', '--no-sandbox'))
      .build();
 })
 
