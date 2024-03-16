@@ -5,13 +5,13 @@ require('selenium-webdriver/chrome')
 
 require('dotenv').config()
 let driver
-const rootURL = 'http://ec2-13-127-87-122.ap-south-1.compute.amazonaws.com:8081'
+const rootURL = "http://ec2-13-127-87-122.ap-south-1.compute.amazonaws.com:8081"
 console.log(rootURL);
 beforeAll(async () => {
      driver = await new Builder().forBrowser(Browser.CHROME)
      .setChromeOptions(options.addArguments('--headless=new'))
      .build();
-}, 20000)
+})
 
 afterAll(async () => {
     driver.quit()
