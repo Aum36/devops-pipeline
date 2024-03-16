@@ -4,7 +4,7 @@ const options = new Chrome.Options();
 require('selenium-webdriver/chrome')
 
 let driver
-const rootURL = "http://localhost:5173/"
+const rootURL = "http://localhost:8081/"
 console.log(rootURL);
 beforeAll(async () => {
      driver = await new Builder().forBrowser(Browser.CHROME)
