@@ -1,6 +1,5 @@
 const { Builder, By, Key, until, Browser} = require('selenium-webdriver')
 const Chrome = require('selenium-webdriver/chrome');
-const assert = require("assert");
 const options = new Chrome.Options();
 require('selenium-webdriver/chrome')
 
@@ -10,14 +9,12 @@ const rootURL = process.env.WEB_URL
 console.log(rootURL);
 beforeAll(async () => {
      driver = await new Builder().forBrowser(Browser.CHROME)
-    //  .setChromeOptions(options.addArguments('--headless=new'))
+     .setChromeOptions(options.addArguments('--headless=new'))
      .build();
-    console.log("Before All")
 })
 
 afterAll(async () => {
     driver.quit()
-    console.log("After All");
 })
 
 it('initializes the context', async () => {
@@ -33,14 +30,19 @@ describe("testing counter page", () => {
     it("clicking counter button", async () => {
         await driver.wait(until.elementLocated(By.xpath('//*[@id="root"]/section/div[2]/button')), 8000);
         let counterButton = await driver.findElement(By.xpath('//*[@id="root"]/section/div[2]/button'));
-        let counterText = await driver.findElement(By.xpath('//*[@id="root"]/section/div[2]'));
-        let text = await counterText.getText()
-        console.log(text.split(" "));
-        let i = 0
-        while (i != 7) {
+        let counterText = await driver.findElement(By.xpath('//*[@id="root"]/section/div[2]/p'));
+        
+        let i = 1
+        const TIMES_TO_CLICK = 6
+        while (i <= TIMES_TO_CLICK) {
             await counterButton.click();
             i = i + 1;
         }
-        console.log("After All");
+
+        let text = await counterText.getText()
+        const textArr = text.split(" ")
+        // console.log(textArr[textArr.length - 1]);
+        // console.log("After All");
+        expect(parseInt(textArr[textArr.length - 1])).toEqual(TIMES_TO_CLICK)
     })
 })
