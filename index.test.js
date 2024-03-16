@@ -11,7 +11,7 @@ beforeAll(async () => {
      driver = await new Builder().forBrowser(Browser.CHROME)
      .setChromeOptions(options.addArguments('--headless=new'))
      .build();
-})
+}, 20000)
 
 afterAll(async () => {
     driver.quit()
