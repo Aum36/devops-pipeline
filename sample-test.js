@@ -2,32 +2,39 @@ import { By, Builder, Browser } from 'selenium-webdriver';
 import assert from 'assert';
 import Chrome from 'selenium-webdriver/chrome.js';
 const options = new Chrome.Options();
+const rootURL = "http://localhost:8081/";
 
 (async function firstTest() {
     let driver;
 
     try {
-        driver = await new Builder().forBrowser(Browser.CHROME).setChromeOptions(options.addArguments('--headless=new', '--no-sandbox')).build();
-        await driver.get('https://www.selenium.dev/selenium/web/web-form.html');
+        driver = await new Builder().forBrowser(Browser.CHROME)
+            .setChromeOptions(options.addArguments('--headless=new', '--no-sandbox'))
+            .build();
+        await driver.get(rootURL);
+        let counterPage = await driver.findElement(By.xpath('//*[@id="root"]/section/div[1]/div/div[3]'));
+        await counterPage.click();
+        await driver.wait(until.elementLocated(By.xpath('//*[@id="root"]/section/div[2]/button')), 8000);
+        let counterButton = await driver.findElement(By.xpath('//*[@id="root"]/section/div[2]/button'));
+        let counterText = await driver.findElement(By.xpath('//*[@id="root"]/section/div[2]/p'));
 
-        let title = await driver.getTitle();
-        assert.equal("Web form", title);
+        let i = 1
+        const TIMES_TO_CLICK = 6
+        while (i <= TIMES_TO_CLICK) {
+            await counterButton.click();
+            i = i + 1;
+        }
 
-        await driver.manage().setTimeouts({ implicit: 500 });
+        let text = await counterText.getText()
+        const textArr = text.split(" ")
+        // console.log(textArr[textArr.length - 1]);
+        // console.log("After All");
+        assert.equal(parseInt(textArr[textArr.length - 1]), TIMES_TO_CLICK)
 
-        let textBox = await driver.findElement(By.name('my-text'));
-        let submitButton = await driver.findElement(By.css('button'));
-
-        await textBox.sendKeys('Selenium');
-        await submitButton.click();
-
-        let message = await driver.findElement(By.id('message'));
-        let value = await message.getText();
-        assert.equal("Received!", value);
-        assert.notEqual("Received!", value);
     } catch (e) {
         console.log(e)
     } finally {
+        await driver.close()
         await driver.quit();
     }
 }())
