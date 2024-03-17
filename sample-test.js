@@ -33,6 +33,7 @@ const rootURL = "http://localhost:8081/";
 
     } catch (e) {
         console.log(e)
+        process.exitCode = 1
     } finally {
         await driver.close()
         await driver.quit();
