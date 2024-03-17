@@ -12,7 +12,7 @@ beforeAll(async () => {
     driver = await new Builder().forBrowser(Browser.CHROME)
         .setChromeOptions(options.addArguments('--headless=new', '--no-sandbox'))
         .build();
-})
+}, 60000)
 
 afterAll(async () => {
     await driver.close()
