@@ -18,7 +18,7 @@ class Counter extends React.Component {
   render() {
     return (
       <div>
-        The Counter Value is {this.state.count} <br></br>
+        <p>The Counter Value is {this.state.count}</p>
         <button className="btn btn-primary" onClick={this.increment}>
           Click to increment counter
         </button>
