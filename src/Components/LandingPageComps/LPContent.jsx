@@ -6,7 +6,7 @@ const LPContent = () => {
     <>
       <div className="text-section">
         <div className="text-content">
-          <span className="lp-heading">Therapy made Easier</span>
+          <span className="lp-heading">Therapy made Should Change</span>
           <p className="lp-text">Say goodbye to tiresome therapy procedures!</p>
           <p className="lp-text">Find all you need at one place</p>
         </div>
