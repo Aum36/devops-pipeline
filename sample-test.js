@@ -29,7 +29,7 @@ const rootURL = "http://localhost:8081/";
         const textArr = text.split(" ")
         // console.log(textArr[textArr.length - 1]);
         // console.log("After All");
-        assert.equal(parseInt(textArr[textArr.length - 1]), TIMES_TO_CLICK + 1)
+        assert.equal(parseInt(textArr[textArr.length - 1]), TIMES_TO_CLICK)
 
     } catch (e) {
         console.log(e)
